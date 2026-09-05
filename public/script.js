@@ -134,6 +134,10 @@ let selectedCity = null;
 // ===============================
 // GET WEATHER
 // ===============================
+
+
+
+const API_BASE_URL = "https://weather-app-y6s8.onrender.com";
 async function getWeather() {
 
     const cityInput = document.getElementById("city");
@@ -161,13 +165,15 @@ async function getWeather() {
         if (selectedCity) {
 
             url =
-                `http://localhost:3000/weather?lat=${selectedCity.lat}&lon=${selectedCity.lon}`;
+    `${API_BASE_URL}/weather?lat=${selectedCity.lat}&lon=${selectedCity.lon}`;
+                
 
         } else {
 
             // If user manually typed a city
             url =
-                `http://localhost:3000/weather?city=${encodeURIComponent(city)}`;
+    `${API_BASE_URL}/weather?city=${encodeURIComponent(city)}`;
+                
         }
 
         const response = await fetch(url);
@@ -285,7 +291,7 @@ async function loadSuggestions(city) {
     try {
 
         const response = await fetch(
-            `http://localhost:3000/city-suggestions?city=${encodeURIComponent(city)}`
+            `${API_BASE_URL}/city-suggestions?city=${encodeURIComponent(city)}`
         );
 
         if (!response.ok) {
